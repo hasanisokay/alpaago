@@ -3,96 +3,126 @@
 @tailwind utilities;
 
 .form-input {
-    width: 100%;
-    max-width: unset;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 0.375rem;
-    outline: none;
+  width: 100%;
+  max-width: unset;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.375rem;
+  outline: none;
+  border: none;
+  transition: background-color 0.3s;
+  /* Focus styles */
+  &:focus {
     border: none;
-    transition: background-color 0.3s;
-    /* Focus styles */
-    &:focus {
-      border: none;
-      outline: none;
-    }
+    outline: none;
   }
-  .error-text{
-    color: red;
-  }
-
-  .box-shadow{
-    box-shadow: inset 0 -5px 20px -15px currentColor;
-  }
-
-  /* .cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background-color: black;
-    pointer-events: none;
-    mix-blend-mode: color;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cursor.hover {
-    background-color: blue; 
-  } */
-
-  
-
-  .cursor {
-    position: fixed;
-    width: auto;
-    height: auto;
-    background-color: transparent;
-    pointer-events: none;
-    z-index: 9999; /* Ensure the cursor is on top */
-  }
-  
-  /* Hovered text color */
-  .text-hover:hover {
-    color: white;
-  }
-  .btn{
-    color: white;
-    max-width: unset;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  .btn-sm{
-    font-size: 10px;
-  }
-.btn-gray{
-  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
-  background-blend-mode: multiply,multiply;
 }
-  .btn-green {
-    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-  }
-  .btn-red {
-    background: #ff416c; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-    background: linear-gradient(to right, #ff4b2b, #ff416c);  }
-  .loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #110f0f;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    }
+.error-text {
+  color: red;
+}
 
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-    } 
+.box-shadow {
+  box-shadow: inset 0 -5px 20px -15px currentColor;
+}
+
+#table-wrapper {
+  position: relative;
+}
+#table-scroll {
+  height: auto;
+  overflow: auto;
+  margin-top: 20px;
+}
+#table-wrapper table {
+  width: 100%;
+}
+#table-wrapper table thead th .text {
+  position: absolute;
+  top: -20px;
+  z-index: 2;
+  height: 20px;
+  width: 35%;
+}
+
+body {
+  background-image: linear-gradient(to top, #d5d4d0 0%, #d5d4d0 1%, #eeeeec 31%, #efeeec 75%, #e9e9e7 100%);
+}
+
+.cursor {
+  position: fixed;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  pointer-events: none;
+  z-index: 9999; /* Ensure the cursor is on top */
+}
+
+.table-td-classes{
+  @apply px-6 py-4 whitespace-nowrap
+}
+.table-col-classes {
+  @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
+/* Hovered text color */
+.text-hover:hover {
+  color: white;
+}
+.btn {
+  color: white;
+  max-width: unset;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.btn-sm {
+  font-size: 10px;
+}
+.active{
+  @apply tracking-wide transition-colors duration-300 text-[#14ae36] font-semibold
+}
+.default{
+  @apply tracking-wide transition-colors duration-200
+}
+
+.btn-gray {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(0, 0, 0, 0.15) 100%
+    ),
+    radial-gradient(
+        at top center,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(0, 0, 0, 0.4) 120%
+      )
+      #989898;
+  background-blend-mode: multiply, multiply;
+}
+.btn-green {
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+.btn-red {
+  background: #ff416c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #110f0f;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

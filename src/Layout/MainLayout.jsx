@@ -1,12 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import Loader from "../components/Loader";
 
 const MainLayout = () => {
   const [cursorX, setCursorX] = useState();
   const [cursorY, setCursorY] = useState();
-
+const {loading } = useContext(AuthContext);
   useEffect(() => {
     const handleMouseMove = (e) => {
       setCursorX(e.pageX);
@@ -20,6 +22,7 @@ const MainLayout = () => {
     };
   }, []);
 
+  if(loading) return <Loader />
   return (
     <>
       <div className="min-h-[calc(100vh-40px)]">

@@ -54,7 +54,7 @@ console.log(user);
     const login = (email, password) => {
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
-        handleLogin(user?.uid, user?.displayName);
+
     }
     const logOut = () => {
         setLoading(true);
@@ -67,10 +67,16 @@ console.log(user);
         setLoading(true)
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
-            setUser(currentUser)
+            if (currentUser) {
+                handleLogin(currentUser?.uid, currentUser.displayName );
+            } else {
+                handleLogout(user?.uid);
+            }
+            setLoading(false)
             setLoading(false)
         })
         return () => unsubscribe()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
 
     const authInfo = { user, db, setUser, loading, setLoading, varifyEmail, withGoogle, withGihub, login, register, withFacebook, setProfile, logOut, resetPassword }
