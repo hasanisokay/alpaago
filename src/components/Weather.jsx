@@ -1,18 +1,13 @@
 import { useState, useEffect} from 'react';
 import toast from 'react-hot-toast';
 import Loader from './Loader';
-// import bgHaze from "../../public/images/haze.jpg"
-// import bgClear from "../../public/images/clear.jpg"
-// import bgDefault from "../../public/images/default.jpg"
-// import bgRainy from "../../public/images/rainy.jpg"
-// import bgCloudy from "../../public/images/cloudy.jpg"
 const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [location, setLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const fetchWeatherData = async (lat, lon) => {
-      const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+      const apiKey = '5cd5ac331e4642e4475e4a5d2b6bc627';
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
       try {
         const response = await fetch(apiUrl);
@@ -27,13 +22,14 @@ const Weather = () => {
     const fetchWeatherByIP = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch(`http://ip-api.com/json/`);
+        const response = await fetch('https://ipinfo.io/json?token=395d047da6533c');
         const data = await response.json();
         setLocation(data);
-        const { lat, lon } = data;
+        const { loc } = data;
+        const [lat, lon] = loc.split(',');
         fetchWeatherData(lat, lon);
       } catch (error) {
-        toast.error("Error fetching location data. Please reload the page.");
+        // toast.error("Error fetching location data. Please reload the page.");
         console.error('Error fetching location data by IP:', error);
       } finally {
         setIsLoading(false);
@@ -41,7 +37,6 @@ const Weather = () => {
     };
     fetchWeatherByIP();
   }, []);
-
   const getBackgroundImage = () => {
     if (!weather) return "https://i.ibb.co/BLZf1pR/pexels-pixabay-76969-50.webp";
     const weatherCondition = weather?.weather[0]?.main;
@@ -60,16 +55,14 @@ const Weather = () => {
   };
 
   if (isLoading) return <Loader />;
-
+console.log(location);
   return (
     <div className={`min-h-screen bg-cover bg-no-repeat`} style={{ backgroundImage: `url(${getBackgroundImage()})` }}>    
     {weather ? (
       <div className='weather-div'>
-        <h2 className='text-3xl mb-4'>Your Location: {location?.city}, {location?.country}</h2>
-        <p>Region: {location?.regionName}</p>
+        <h2 className='text-3xl mb-4 text-center'>Your Location: {location?.city}, {location?.country}</h2>
+        <p>Region: {location?.region}</p>
         <p>Timezone: {location?.timezone}</p>
-        <p>Zip: {location?.zip}</p>
-        <p>ISP: {location?.isp}</p>
         <h2 className='mt-4 font-semibold text-xl'>Weather In {location?.city}</h2>
         <p>Temperature: {weather?.main?.temp}°C</p>
         <p>{weather?.weather[0]?.main}</p>

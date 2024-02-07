@@ -85,7 +85,7 @@ body {
   @apply tracking-wide transition-colors duration-200
 }
 .weather-div{
-  @apply flex items-center justify-center flex-col text-lg font-semibold bg-black bg-opacity-30 p-4 text-white min-h-screen min-w-full
+  @apply flex items-center justify-center flex-col text-lg font-semibold bg-black bg-opacity-30 p-4 text-white min-h-screen min-w-full text-center
 }
 .btn-gray {
   background: linear-gradient(
