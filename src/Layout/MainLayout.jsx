@@ -27,17 +27,16 @@ const MainLayout = () => {
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
-      {/* Cursor */}
-      <div
+
+      {/* <div
         className="cursor"
         style={{
           left: cursorX + 'px',
           top: cursorY + 'px',
         }}
       >
-        {/* Text to display on cursor */}
         <p className="text-on-cursor">Your Text</p>
-      </div>
+      </div> */}
     </>
   );
 };

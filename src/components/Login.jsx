@@ -101,7 +101,7 @@ const Login = () => {
                     <p className='error-text'>{passwordError}</p>
 
                     <br />
-                    <button className="btn-green" type='submit'>Login</button>
+                    <button className="btn-green btn" type='submit'>Login</button>
                     <div className='mt-4'>
                         <p>New here? Please <Link to="/signup" className='text-blue-600'>SignUp</Link> </p>
                     </div>

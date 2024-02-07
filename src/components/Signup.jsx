@@ -117,7 +117,7 @@ const SignUp = () => {
                     </label>
                     <input type="url" placeholder="photo url" value={"https://picsum.photos/200"} className='form-input' required name='photourl' />
 
-                    <button className="btn-green mt-4" type='submit'>Signup</button>
+                    <button className="btn-green btn mt-4" type='submit'>Signup</button>
                     <div className='mt-4'>
                         <p>Already have an account? Please <Link to="/login" className='text-blue-800'>login</Link> </p>
                     </div>

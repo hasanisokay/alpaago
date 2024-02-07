@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Weather from "./Weather";
+import UserTable from "../users/UserTable";
 
 const Home = () => {
 
@@ -12,7 +13,8 @@ const Home = () => {
             <Helmet>
                 <title>Home - Alpaago</title>
             </Helmet>
-            <Weather />
+            {/* <Weather /> */}
+            <UserTable />
 
         </div>
     );
