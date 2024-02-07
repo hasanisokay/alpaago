@@ -27,7 +27,9 @@ const {loading } = useContext(AuthContext);
     <>
       <div className="min-h-[calc(100vh-40px)]">
         <Navbar></Navbar>
+        <div className="pt-[70px]">
         <Outlet></Outlet>
+        </div>
       </div>
       <Footer></Footer>
 

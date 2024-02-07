@@ -79,12 +79,14 @@ body {
   font-size: 10px;
 }
 .active{
-  @apply tracking-wide transition-colors duration-300 text-[#14ae36] font-semibold
+  @apply tracking-wide transition-colors duration-500 text-[#14ae36] font-semibold
 }
 .default{
   @apply tracking-wide transition-colors duration-200
 }
-
+.weather-div{
+  @apply flex items-center justify-center flex-col text-lg font-semibold bg-black bg-opacity-30 p-4 text-white min-h-screen min-w-full
+}
 .btn-gray {
   background: linear-gradient(
       to bottom,

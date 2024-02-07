@@ -5,6 +5,7 @@ import { AuthContext } from '../providers/AuthProvider';
 import toast from 'react-hot-toast';
 
 const SignUp = () => {
+
     const location = useLocation()
     const { register, setProfile, withGoogle, user } = useContext(AuthContext)
     const navigate = useNavigate()
@@ -14,7 +15,6 @@ const SignUp = () => {
     const [email, setEmail] = useState("")
 
     const handleEmail = e => {
-
         const input = e.target.value;
         if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
             setEmailError("Please enter a valid email")
@@ -56,7 +56,7 @@ const SignUp = () => {
                 setProfile(name, photourl)
                     .then()
                     .catch()
-                navigate(location?.state?.pathname || "/")
+                navigate("/")
             })
             .catch(error => {
                 const message = error.message.slice(10)
@@ -90,7 +90,7 @@ const SignUp = () => {
 
             <div className="box-shadow p-4 mx-auto h-[650px] min-w-[300px] w-[400px] max-w-[90%] ">
                 <h1 className='text-4xl font-semibold text-center my-4'>Sign Up</h1>
-                <h1 className='text-lg font-medium text-center'>Join alpaago</h1>
+                <h1 className='text-lg font-medium text-center'>Join Alpaago</h1>
                 <form onSubmit={handleRegister}>
                     <label htmlFor="name" className="block mt-4 mb-2 ">
                         Name

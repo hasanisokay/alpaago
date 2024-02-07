@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile, GoogleAuthProvider, signInWithPopup, GithubAuthProvider, sendEmailVerification, FacebookAuthProvider } from "firebase/auth"
 import { app } from '../Firebase/firebase.config.mjs';
 // eslint-disable-next-line no-unused-vars
-import { ref,  update,  getDatabase,  } from 'firebase/database';
+import { ref, update, getDatabase, } from 'firebase/database';
 
 export const AuthContext = createContext(null);
 
@@ -12,8 +12,6 @@ const AuthProvider = ({ children }) => {
     const db = getDatabase(app);
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
-
-console.log(user);
     const varifyEmail = () => {
         return sendEmailVerification(auth.currentUser)
     }
@@ -21,8 +19,7 @@ console.log(user);
         return sendPasswordResetEmail(auth, email)
     }
     const register = (email, password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
+        return createUserWithEmailAndPassword(auth, email, password);
     }
     const setProfile = (displayName, photoURL) => {
         return updateProfile(auth.currentUser, {
@@ -43,13 +40,13 @@ console.log(user);
     }
     const handleLogin = (userId, name) => {
         const userRef = ref(db, `users/${userId}`);
-        update(userRef, { status: "active", name, addedDate: new Date()});
+        update(userRef, { status: "active", name, addedDate: new Date() });
     };
-      
+
     const handleLogout = (userId) => {
         const userRef = ref(db, `users/${userId}`);
         update(userRef, { status: "inactive", addedDate: new Date() });
-      };
+    };
 
     const login = (email, password) => {
         setLoading(true)
@@ -59,7 +56,7 @@ console.log(user);
     const logOut = () => {
         setLoading(true);
         signOut(auth);
-        handleLogout(user?.uid); 
+        handleLogout(user?.uid);
     }
 
 
@@ -68,7 +65,7 @@ console.log(user);
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
             if (currentUser) {
-                handleLogin(currentUser?.uid, currentUser.displayName );
+                handleLogin(currentUser?.uid, currentUser.displayName);
             } else {
                 handleLogout(user?.uid);
             }
@@ -76,10 +73,10 @@ console.log(user);
             setLoading(false)
         })
         return () => unsubscribe()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user, auth, register ])
 
-    const authInfo = { user, db, setUser, loading, setLoading, varifyEmail, withGoogle, withGihub, login, register, withFacebook, setProfile, logOut, resetPassword }
+    const authInfo = { user, db, setUser, loading, setLoading, varifyEmail, withGoogle, withGihub, login, register, withFacebook, setProfile, handleLogin, logOut, resetPassword }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
